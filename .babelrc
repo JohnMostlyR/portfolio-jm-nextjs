@@ -1,0 +1,59 @@
+{
+  "presets": [
+    "next/babel",
+    "stage-0"
+  ],
+  "plugins": [
+    [
+      "transform-assets-import-to-string",
+      {
+        "baseDir": "static",
+        "baseUri": "/"
+      }
+    ],
+    "syntax-dynamic-import"
+  ],
+  "env": {
+    "development": {
+      "plugins": [
+        "react-intl",
+        [
+          "babel-plugin-styled-components",
+          {
+            "ssr": true,
+            "displayName": true,
+            "preprocess": false
+          }
+        ]
+      ]
+    },
+    "production": {
+      "plugins": [
+        [
+          "react-intl",
+          {
+            "messagesDir": "lang/.messages/"
+          }
+        ],
+        [
+          "babel-plugin-styled-components",
+          {
+            "ssr": true,
+            "displayName": false,
+            "preprocess": false
+          }
+        ]
+      ]
+    },
+    "test": {
+      "presets": [
+        [
+          "env",
+          {
+            "modules": "commonjs"
+          }
+        ]
+      ]
+    }
+  }
+}
